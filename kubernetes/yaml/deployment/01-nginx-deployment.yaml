@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment   # 👈 Type of object (creates and manages pods)
+metadata:
+  name: nginx-deployment
+  namespace: dev
+spec:
+  replicas: 1      # 👈 Start with 1 replica (pod)
+  selector:
+    matchLabels:
+      app: nginx   # 👈 Helps match this Deployment to Pods with the same label
+  template:
+    metadata:
+      labels:
+        app: nginx  # 👈 Label assigned to the Pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest   # 👈 Container image to run
+        ports:
+        - containerPort: 80   # 👈 Port your app listens on
